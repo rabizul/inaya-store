@@ -1,1363 +1,1923 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>INAYA STORE | Discover • Shop • Save</title>
-
-    <meta name="description"
-        content="INAYA STORE helps you discover useful products, deals and shopping recommendations from trusted partner stores.">
-
-    <meta name="robots" content="index, follow">
-
-    <meta name="author" content="INAYA STORE">
-
-    <meta property="og:title" content="INAYA STORE | Smart Affiliate Shopping">
-    <meta property="og:description" content="Discover useful products and shopping recommendations.">
-    <meta property="og:type" content="website">
-
-    <style>
-        * {
-            s margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: #f5f7fb;
-            color: #172033;
-            line-height: 1.6;
-        }
-
-        /* ================= HEADER ================= */
-
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: #0b1220;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, .18);
-        }
-
-        .navbar {
-            max-width: 1200px;
-            margin: auto;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .logo {
-            color: white;
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .logo span {
-            color: #38bdf8;
-        }
-
-        nav {
-            display: flex;
-            gap: 22px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: #e5e7eb;
-            text-decoration: none;
-            font-size: 14px;
-            transition: .3s;
-        }
-
-        nav a:hover {
-            color: #38bdf8;
-        }
-
-        /* ================= HERO ================= */
-
-        .hero {
-            min-height: 470px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 70px 20px;
-
-            background:
-                linear-gradient(rgba(2, 6, 23, .86), rgba(2, 6, 23, .9)),
-                url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80") center/cover;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 7px 15px;
-            border-radius: 30px;
-            background: #38bdf8;
-            color: #082f49;
-            font-size: 13px;
-            font-weight: bold;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 {
-            font-size: 50px;
-            line-height: 1.15;
-            margin-bottom: 18px;
-        }
-
-        .hero h1 span {
-            color: #38bdf8;
-        }
-
-        .hero p {
-            color: #dbeafe;
-            font-size: 18px;
-            margin-bottom: 28px;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            padding: 14px 25px;
-            background: #38bdf8;
-            color: #082f49;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: bold;
-            transition: .3s;
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-3px);
-        }
-
-        /* ================= DISCLOSURE ================= */
-
-        .disclosure {
-            max-width: 1200px;
-            margin: 25px auto 0;
-            padding: 15px 20px;
-            background: #fff7ed;
-            border-left: 4px solid #f97316;
-            color: #7c2d12;
-            border-radius: 7px;
-            font-size: 14px;
-        }
-
-        /* ================= COMMON ================= */
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .section-title h2 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-        .section-title p {
-            color: #64748b;
-        }
-
-        /* ================= CATEGORIES ================= */
-
-        .categories {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 28px;
-        }
-
-        .category-btn {
-            border: none;
-            background: white;
-            color: #172033;
-            padding: 10px 17px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: bold;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .07);
-        }
-
-        .category-btn:hover,
-        .category-btn.active {
-            background: #0b1220;
-            color: white;
-        }
-
-        /* ================= FILTER ================= */
-
-        .filters {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 30px;
-        }
-
-        .search {
-            flex: 1;
-        }
-
-        .search input,
-        .filters select {
-            width: 100%;
-            padding: 13px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            background: white;
-            outline: none;
-        }
-
-        .search input:focus,
-        .filters select:focus {
-            border-color: #38bdf8;
-        }
-
-        /* ================= PRODUCTS ================= */
-
-        .products {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
-            transition: .3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, .14);
-        }
-
-        .card-image {
-            height: 220px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: .4s;
-        }
-
-        .card:hover img {
-            transform: scale(1.06);
-        }
-
-        .discount {
-            position: absolute;
-            top: 12px;
-            left: 12px;
-            background: #ef4444;
-            color: white;
-            padding: 5px 9px;
-            border-radius: 5px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .wish {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 38px;
-            height: 38px;
-            border: 0;
-            border-radius: 50%;
-            background: white;
-            cursor: pointer;
-            font-size: 20px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, .15);
-        }
-
-        .card-body {
-            padding: 18px;
-        }
-
-        .category {
-            color: #64748b;
-            font-size: 12px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        .card h3 {
-            margin: 6px 0;
-            font-size: 18px;
-        }
-
-        .rating {
-            color: #f59e0b;
-            font-size: 14px;
-        }
-
-        .price {
-            margin: 12px 0;
-        }
-
-        .current {
-            font-size: 21px;
-            font-weight: bold;
-        }
-
-        .old {
-            margin-left: 8px;
-            color: #9ca3af;
-            text-decoration: line-through;
-            font-size: 14px;
-        }
-
-        .buy {
-            width: 100%;
-            padding: 12px;
-            border: 0;
-            border-radius: 8px;
-            background: #0b1220;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: .3s;
-        }
-
-        .buy:hover {
-            background: #38bdf8;
-            color: #082f49;
-        }
-
-        /* ================= NO RESULTS ================= */
-
-        .no-results {
-            display: none;
-            text-align: center;
-            padding: 40px;
-        }
-
-        /* ================= HOW ================= */
-
-        .how {
-            background: white;
-        }
-
-        .steps {
-            max-width: 1000px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .step {
-            text-align: center;
-            background: #f8fafc;
-            padding: 30px 20px;
-            border-radius: 12px;
-        }
-
-        .icon {
-            font-size: 40px;
-            margin-bottom: 10px;
-        }
-
-        .step h3 {
-            margin-bottom: 8px;
-        }
-
-        .step p {
-            color: #64748b;
-        }
-
-        /* ================= ABOUT ================= */
-
-        .about-box {
-            max-width: 850px;
-            margin: auto;
-            text-align: center;
-        }
-
-        .about-box p {
-            color: #64748b;
-            margin-bottom: 15px;
-        }
-
-        /* ================= INFO PAGES ================= */
-
-        .info-section {
-            background: #eef2f7;
-        }
-
-        .info-box {
-            max-width: 900px;
-            margin: auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, .06);
-        }
-
-        .info-box h3 {
-            margin: 20px 0 8px;
-        }
-
-        .info-box h3:first-child {
-            margin-top: 0;
-        }
-
-        .info-box p {
-            color: #475569;
-            margin-bottom: 12px;
-        }
-
-        .info-box ul {
-            padding-left: 22px;
-            color: #475569;
-        }
-
-        /* ================= CONTACT ================= */
-
-        .contact-box {
-            max-width: 650px;
-            margin: auto;
-        }
-
-        .contact-box form {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, .07);
-        }
-
-        .contact-box label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        .contact-box input,
-        .contact-box textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 7px;
-            margin-bottom: 15px;
-            outline: none;
-        }
-
-        .contact-box textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
-
-        .contact-btn {
-            width: 100%;
-            padding: 13px;
-            border: 0;
-            border-radius: 8px;
-            background: #0b1220;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* ================= FOOTER ================= */
-
-        footer {
-            background: #0b1220;
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-        }
-
-        footer h2 {
-            margin-bottom: 8px;
-        }
-
-        footer p {
-            color: #cbd5e1;
-            font-size: 14px;
-        }
-
-        .footer-links {
-            margin: 18px 0;
-        }
-
-        .footer-links a {
-            color: #38bdf8;
-            text-decoration: none;
-            margin: 0 8px;
-        }
-
-        /* ================= MODAL ================= */
-
-        .modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, .7);
-            z-index: 3000;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .modal-box {
-            max-width: 450px;
-            width: 100%;
-            background: white;
-            padding: 30px;
-            border-radius: 14px;
-            text-align: center;
-        }
-
-        .modal-box h2 {
-            margin-bottom: 10px;
-        }
-
-        .modal-box p {
-            color: #64748b;
-            margin-bottom: 20px;
-        }
-
-        .close {
-            padding: 10px 20px;
-            border: 0;
-            border-radius: 7px;
-            cursor: pointer;
-        }
-
-        /* ================= TOAST ================= */
-
-        .toast {
-            display: none;
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background: #0b1220;
-            color: white;
-            padding: 13px 18px;
-            border-radius: 8px;
-            z-index: 4000;
-        }
-
-        /* ================= MOBILE ================= */
-
-        @media(max-width:1000px) {
-
-            .products {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-        }
-
-        @media(max-width:750px) {
-
-            .navbar {
-                flex-direction: column;
-            }
-
-            nav {
-                justify-content: center;
-            }
-
-            .hero h1 {
-                font-size: 38px;
-            }
-
-            .products {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .steps {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-        @media(max-width:500px) {
-
-            .hero {
-                min-height: 420px;
-            }
-
-            .hero h1 {
-                font-size: 31px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-
-            .products {
-                grid-template-columns: 1fr;
-            }
-
-            .filters {
-                flex-direction: column;
-            }
-
-            .container {
-                padding: 45px 15px;
-            }
-
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>INAYA STORE | Smart Shopping & Product Discovery</title>
+
+<meta name="description"
+content="Discover useful products, deals and shopping recommendations with INAYA STORE. Explore electronics, fashion, home, beauty and accessories.">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="INAYA STORE">
+
+<style>
+:root{
+--bg:#f6f8fc;
+--card:#fff;
+--text:#111827;
+--muted:#64748b;
+--dark:#0b1220;
+--primary:#38bdf8;
+--primary-dark:#0284c7;
+--border:#e5e7eb;
+--danger:#ef4444;
+--warning:#f59e0b;
+--shadow:0 10px 35px rgba(15,23,42,.08);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+html{scroll-behavior:smooth}
+
+body{
+font-family:Arial,Helvetica,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+}
+
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+
+header{
+position:sticky;
+top:0;
+z-index:1000;
+background:rgba(11,18,32,.95);
+backdrop-filter:blur(15px);
+border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.navbar{
+max-width:1250px;
+margin:auto;
+min-height:72px;
+padding:12px 20px;
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:25px;
+}
+
+.logo{
+color:white;
+font-size:21px;
+font-weight:900;
+letter-spacing:.8px;
+white-space:nowrap;
+}
+
+.logo span{color:var(--primary)}
+
+nav{
+display:flex;
+align-items:center;
+gap:24px;
+flex-wrap:wrap;
+}
+
+nav a{
+color:#dbeafe;
+text-decoration:none;
+font-size:14px;
+font-weight:600;
+}
+
+nav a:hover{color:var(--primary)}
+
+.hero{
+min-height:570px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:80px 20px;
+background:
+linear-gradient(135deg,rgba(2,6,23,.94),rgba(8,47,73,.82)),
+url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1800&q=85")
+center/cover;
+}
+
+.hero-content{max-width:900px}
+
+.badge{
+display:inline-flex;
+padding:8px 16px;
+border-radius:999px;
+background:rgba(56,189,248,.15);
+border:1px solid rgba(56,189,248,.4);
+color:#7dd3fc;
+font-size:12px;
+font-weight:800;
+letter-spacing:1px;
+margin-bottom:22px;
+}
+
+.hero h1{
+font-size:clamp(38px,6vw,68px);
+line-height:1.08;
+letter-spacing:-2px;
+margin-bottom:22px;
+}
+
+.hero h1 span{color:var(--primary)}
+
+.hero p{
+max-width:700px;
+margin:auto auto 30px;
+color:#dbeafe;
+font-size:18px;
+}
+
+.hero-buttons{
+display:flex;
+justify-content:center;
+gap:12px;
+flex-wrap:wrap;
+}
+
+.hero-btn{
+display:inline-flex;
+padding:14px 24px;
+border-radius:10px;
+text-decoration:none;
+font-weight:800;
+}
+
+.hero-btn.primary{
+background:var(--primary);
+color:#082f49;
+}
+
+.hero-btn.secondary{
+color:white;
+border:1px solid rgba(255,255,255,.25);
+background:rgba(255,255,255,.08);
+}
+
+.trust-strip{
+max-width:1150px;
+margin:-35px auto 0;
+position:relative;
+z-index:5;
+padding:0 20px;
+}
+
+.trust-grid{
+background:white;
+border:1px solid var(--border);
+border-radius:18px;
+box-shadow:var(--shadow);
+display:grid;
+grid-template-columns:repeat(3,1fr);
+overflow:hidden;
+}
+
+.trust-item{
+padding:22px;
+display:flex;
+align-items:center;
+gap:14px;
+border-right:1px solid var(--border);
+}
+
+.trust-item:last-child{border-right:none}
+
+.trust-icon{
+width:45px;
+height:45px;
+border-radius:12px;
+display:grid;
+place-items:center;
+background:#e0f2fe;
+font-size:21px;
+flex-shrink:0;
+}
+
+.trust-item strong{display:block;font-size:14px}
+.trust-item span{color:var(--muted);font-size:12px}
+
+.disclosure{
+max-width:1150px;
+margin:25px auto 0;
+padding:15px 18px;
+background:#fff7ed;
+border:1px solid #fed7aa;
+border-left:4px solid #f97316;
+color:#7c2d12;
+border-radius:10px;
+font-size:13px;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+padding:75px 20px;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:35px;
+}
+
+.section-label{
+display:inline-block;
+color:var(--primary-dark);
+font-size:12px;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:1.5px;
+margin-bottom:7px;
+}
+
+.section-title h2{
+font-size:clamp(28px,4vw,38px);
+line-height:1.2;
+margin-bottom:9px;
+}
+
+.section-title p{color:var(--muted)}
+
+.categories{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:9px;
+margin-bottom:20px;
+}
+
+.category-btn{
+border:1px solid var(--border);
+background:white;
+color:#334155;
+padding:10px 17px;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+}
+
+.category-btn.active{
+background:var(--dark);
+border-color:var(--dark);
+color:white;
+}
+
+.filters{
+display:grid;
+grid-template-columns:1fr 220px;
+gap:12px;
+margin-bottom:28px;
+}
+
+.search{position:relative}
+
+.search-icon{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+}
+
+.search input,
+.filters select{
+width:100%;
+min-height:48px;
+padding:12px 14px;
+border:1px solid var(--border);
+border-radius:10px;
+background:white;
+outline:none;
+}
+
+.search input{padding-left:42px}
+
+.product-count{
+color:var(--muted);
+font-size:13px;
+margin-bottom:15px;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+}
+
+.card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 5px 22px rgba(15,23,42,.05);
+transition:.25s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:0 18px 40px rgba(15,23,42,.12);
+}
+
+.card-image{
+height:235px;
+position:relative;
+overflow:hidden;
+background:#f8fafc;
+}
+
+.card-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+transition:.4s;
+}
+
+.card:hover .card-image img{transform:scale(1.06)}
+
+.discount{
+position:absolute;
+top:12px;
+left:12px;
+background:var(--danger);
+color:white;
+padding:5px 9px;
+border-radius:6px;
+font-size:11px;
+font-weight:800;
+}
+
+.wish{
+position:absolute;
+top:10px;
+right:10px;
+width:40px;
+height:40px;
+border:0;
+border-radius:50%;
+background:rgba(255,255,255,.95);
+font-size:21px;
+box-shadow:0 4px 15px rgba(0,0,0,.15);
+}
+
+.card-body{padding:17px}
+
+.category{
+color:var(--primary-dark);
+font-size:10px;
+font-weight:800;
+text-transform:uppercase;
+letter-spacing:1px;
+}
+
+.card h3{
+margin:7px 0;
+font-size:17px;
+line-height:1.35;
+min-height:46px;
+}
+
+.rating{color:var(--warning);font-size:13px}
+.rating span{color:#94a3b8}
+
+.price{
+margin:12px 0 15px;
+display:flex;
+align-items:baseline;
+flex-wrap:wrap;
+gap:6px;
+}
+
+.current{
+font-size:21px;
+font-weight:900;
+}
+
+.old{
+color:#9ca3af;
+text-decoration:line-through;
+font-size:13px;
+}
+
+.card-actions{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.details,.buy{
+min-height:42px;
+border-radius:9px;
+font-weight:800;
+font-size:12px;
+}
+
+.details{
+border:1px solid var(--border);
+background:white;
+color:#334155;
+}
+
+.buy{
+border:0;
+background:var(--dark);
+color:white;
+}
+
+.buy:hover{
+background:var(--primary);
+color:#082f49;
+}
+
+.no-results{
+display:none;
+text-align:center;
+padding:55px 20px;
+background:white;
+border:1px solid var(--border);
+border-radius:15px;
+}
+
+.no-results-icon{
+font-size:42px;
+margin-bottom:10px;
+}
+
+.no-results p{color:var(--muted)}
+
+.how{
+background:white;
+border-top:1px solid var(--border);
+border-bottom:1px solid var(--border);
+}
+
+.steps{
+max-width:1050px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.step{
+text-align:center;
+background:#f8fafc;
+border:1px solid var(--border);
+padding:30px 22px;
+border-radius:16px;
+}
+
+.icon{
+width:60px;
+height:60px;
+margin:0 auto 15px;
+border-radius:16px;
+background:#e0f2fe;
+display:grid;
+place-items:center;
+font-size:27px;
+}
+
+.step h3{margin-bottom:8px}
+.step p{color:var(--muted);font-size:14px}
+
+.about-box{
+max-width:850px;
+margin:auto;
+text-align:center;
+}
+
+.about-box p{
+color:var(--muted);
+margin-bottom:15px;
+}
+
+.info-section{background:#eef2f7}
+
+.info-box{
+max-width:900px;
+margin:auto;
+background:white;
+padding:32px;
+border:1px solid var(--border);
+border-radius:16px;
+box-shadow:0 5px 20px rgba(15,23,42,.05);
+}
+
+.info-box h3{margin:20px 0 8px}
+.info-box h3:first-child{margin-top:0}
+.info-box p{color:#475569;margin-bottom:12px}
+
+.contact-box{
+max-width:650px;
+margin:auto;
+}
+
+.contact-box form{
+background:white;
+padding:32px;
+border:1px solid var(--border);
+border-radius:16px;
+box-shadow:var(--shadow);
+}
+
+.contact-box label{
+display:block;
+margin-bottom:5px;
+font-size:13px;
+font-weight:800;
+}
+
+.contact-box input,
+.contact-box textarea{
+width:100%;
+padding:13px;
+border:1px solid var(--border);
+border-radius:9px;
+margin-bottom:16px;
+outline:none;
+}
+
+.contact-box textarea{
+min-height:125px;
+resize:vertical;
+}
+
+.contact-btn{
+width:100%;
+padding:13px;
+border:0;
+border-radius:9px;
+background:var(--dark);
+color:white;
+font-weight:800;
+}
+
+footer{
+background:#080e1a;
+color:white;
+text-align:center;
+padding:50px 20px 30px;
+}
+
+footer h2{margin-bottom:8px}
+footer p{color:#94a3b8;font-size:13px}
+
+.footer-links{
+margin:20px 0;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.footer-links a{
+color:#7dd3fc;
+text-decoration:none;
+font-size:13px;
+}
+
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(2,6,23,.72);
+backdrop-filter:blur(5px);
+z-index:3000;
+align-items:center;
+justify-content:center;
+padding:20px;
+}
+
+.modal-box{
+max-width:520px;
+width:100%;
+max-height:90vh;
+overflow-y:auto;
+background:white;
+padding:28px;
+border-radius:18px;
+box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.modal-product-image{
+width:100%;
+height:230px;
+object-fit:contain;
+background:#f8fafc;
+border-radius:12px;
+margin-bottom:20px;
+}
+
+.modal-category{
+color:var(--primary-dark);
+font-size:11px;
+font-weight:800;
+text-transform:uppercase;
+}
+
+.modal-rating{color:var(--warning);margin:8px 0}
+.modal-price{font-size:25px;font-weight:900;margin:10px 0}
+.modal-description{color:var(--muted);margin-bottom:20px}
+
+.modal-actions{
+display:flex;
+gap:10px;
+}
+
+.modal-buy{
+flex:1;
+padding:12px;
+border:0;
+border-radius:9px;
+background:var(--dark);
+color:white;
+font-weight:800;
+}
+
+.modal-close{
+padding:12px 18px;
+border:1px solid var(--border);
+border-radius:9px;
+background:white;
+font-weight:700;
+}
+
+.toast{
+display:none;
+position:fixed;
+bottom:25px;
+right:25px;
+max-width:300px;
+background:var(--dark);
+color:white;
+padding:13px 18px;
+border-radius:10px;
+z-index:4000;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+font-size:13px;
+}
+
+@media(max-width:1000px){
+.products{grid-template-columns:repeat(3,1fr)}
+}
+
+@media(max-width:750px){
+
+.navbar{
+flex-direction:column;
+padding:14px;
+}
+
+nav{
+justify-content:center;
+gap:14px;
+}
+
+.hero{min-height:500px}
+
+.trust-grid{grid-template-columns:1fr}
+
+.trust-item{
+border-right:none;
+border-bottom:1px solid var(--border);
+}
+
+.trust-item:last-child{border-bottom:none}
+
+.products{grid-template-columns:repeat(2,1fr)}
+
+.steps{grid-template-columns:1fr}
+
+.filters{grid-template-columns:1fr}
+}
+
+@media(max-width:500px){
+
+.logo{font-size:18px}
+
+nav{gap:11px}
+
+nav a{font-size:12px}
+
+.hero{
+min-height:470px;
+padding:60px 16px;
+}
+
+.hero h1{letter-spacing:-1px}
+.hero p{font-size:15px}
+
+.hero-buttons{flex-direction:column}
+.hero-btn{width:100%}
+
+.products{grid-template-columns:1fr}
+
+.card-image{height:250px}
+
+.container{padding:55px 15px}
+
+.disclosure{
+margin-left:15px;
+margin-right:15px;
+}
+
+.trust-strip{padding:0 15px}
+
+.info-box,
+.contact-box form{
+padding:22px;
+}
+
+.modal-actions{flex-direction:column}
+
+.toast{
+left:15px;
+right:15px;
+bottom:15px;
+max-width:none;
+text-align:center;
+}
+}
+</style>
 </head>
-
 
 <body>
 
+<header>
+<div class="navbar">
 
-    <!-- ================= HEADER ================= -->
+<div class="logo">🛍️ INAYA <span>STORE</span></div>
 
-    <header>
+<nav>
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#how">How It Works</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+</nav>
 
-        <div class="navbar">
+</div>
+</header>
 
-            <div class="logo">
-                🛍️ INAYA <span>STORE</span>
-            </div>
+<section class="hero" id="home">
 
-            <nav>
-                <a href="#home">Home</a>
-                <a href="#products">Products</a>
-                <a href="#how">How It Works</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
-            </nav>
+<div class="hero-content">
 
-        </div>
+<div class="badge">SMART AFFILIATE SHOPPING</div>
 
-    </header>
+<h1>
+Discover Better Products with
+<span>INAYA STORE</span>
+</h1>
 
+<p>
+Explore useful products, compare your options and
+discover shopping recommendations from trusted partner stores.
+</p>
 
-    <!-- ================= HERO ================= -->
+<div class="hero-buttons">
 
-    <section class="hero" id="home">
+<a href="#products" class="hero-btn primary">
+Explore Products →
+</a>
 
-        <div class="hero-content">
+<a href="#how" class="hero-btn secondary">
+How It Works
+</a>
 
-            <div class="badge">
-                AFFILIATE SHOPPING
-            </div>
+</div>
 
-            <h1>
-                Smart Shopping with
-                <span>INAYA STORE</span>
-            </h1>
+</div>
+</section>
 
-            <p>
-                Discover useful products, explore deals and
-                shop through trusted partner websites.
-            </p>
+<div class="trust-strip">
 
-            <a href="#products" class="hero-btn">
-                Explore Products →
-            </a>
+<div class="trust-grid">
 
-        </div>
+<div class="trust-item">
+<div class="trust-icon">🔎</div>
+<div>
+<strong>Curated Discoveries</strong>
+<span>Useful products in one place</span>
+</div>
+</div>
 
-    </section>
+<div class="trust-item">
+<div class="trust-icon">🛍️</div>
+<div>
+<strong>Partner Shopping</strong>
+<span>Purchase on merchant websites</span>
+</div>
+</div>
 
+<div class="trust-item">
+<div class="trust-icon">✓</div>
+<div>
+<strong>Transparent Shopping</strong>
+<span>Clear affiliate disclosure</span>
+</div>
+</div>
 
-    <!-- ================= DISCLOSURE ================= -->
+</div>
+</div>
 
-    <div class="disclosure">
+<div class="disclosure">
+<strong>Affiliate Disclosure:</strong>
+Some links on INAYA STORE are affiliate links.
+If you purchase through an affiliate link, we may earn
+a commission at no additional cost to you.
+</div>
 
-        <strong>Affiliate Disclosure:</strong>
-        Some links on INAYA STORE are affiliate links.
-        If you purchase through an affiliate link, we may earn
-        a commission at no additional cost to you.
+<section class="container" id="products">
 
-    </div>
+<div class="section-title">
 
+<div class="section-label">Shop Smarter</div>
 
-    <!-- ================= PRODUCTS ================= -->
+<h2>Featured Products</h2>
 
-    <section class="container" id="products">
+<p>
+Explore selected products and discover something useful.
+</p>
 
-        <div class="section-title">
+</div>
 
-            <h2>Featured Products</h2>
+<div class="categories">
 
-            <p>
-                Explore our selected product recommendations.
-            </p>
+<button class="category-btn active"
+onclick="setCategory('All',this)">All</button>
 
-        </div>
+<button class="category-btn"
+onclick="setCategory('Electronics',this)">Electronics</button>
 
+<button class="category-btn"
+onclick="setCategory('Fashion',this)">Fashion</button>
 
-        <!-- CATEGORIES -->
+<button class="category-btn"
+onclick="setCategory('Home',this)">Home</button>
 
-        <div class="categories">
+<button class="category-btn"
+onclick="setCategory('Beauty',this)">Beauty</button>
 
-            <button class="category-btn active" onclick="setCategory('All',this)">
-                All
-            </button>
+<button class="category-btn"
+onclick="setCategory('Accessories',this)">Accessories</button>
 
-            <button class="category-btn" onclick="setCategory('Electronics',this)">
-                Electronics
-            </button>
+</div>
 
-            <button class="category-btn" onclick="setCategory('Fashion',this)">
-                Fashion
-            </button>
+<div class="filters">
 
-            <button class="category-btn" onclick="setCategory('Home',this)">
-                Home
-            </button>
+<div class="search">
+<span class="search-icon">🔎</span>
 
-            <button class="category-btn" onclick="setCategory('Beauty',this)">
-                Beauty
-            </button>
+<input
+type="search"
+id="search"
+placeholder="Search products..."
+oninput="renderProducts()">
+</div>
 
-            <button class="category-btn" onclick="setCategory('Accessories',this)">
-                Accessories
-            </button>
+<select id="sort" onchange="renderProducts()">
 
-        </div>
+<option value="default">Sort Products</option>
+<option value="low">Price: Low to High</option>
+<option value="high">Price: High to Low</option>
+<option value="rating">Highest Rating</option>
+<option value="discount">Highest Discount</option>
 
+</select>
 
-        <!-- SEARCH / SORT -->
+</div>
 
-        <div class="filters">
+<div class="product-count" id="productCount"></div>
 
-            <div class="search">
+<div class="products" id="productGrid"></div>
 
-                <input type="search" id="search" placeholder="🔎 Search products..." oninput="renderProducts()">
+<div class="no-results" id="noResults">
 
-            </div>
+<div class="no-results-icon">🔎</div>
 
-            <select id="sort" onchange="renderProducts()">
+<h3>No products found</h3>
 
-                <option value="default">
-                    Sort Products
-                </option>
+<p>Try another product name or category.</p>
 
-                <option value="low">
-                    Price: Low to High
-                </option>
+</div>
 
-                <option value="high">
-                    Price: High to Low
-                </option>
+</section>
 
-                <option value="rating">
-                    Highest Rating
-                </option>
+<section class="how" id="how">
 
-                <option value="discount">
-                    Highest Discount
-                </option>
+<div class="container">
 
-            </select>
+<div class="section-title">
 
-        </div>
+<div class="section-label">Simple Process</div>
 
+<h2>How It Works</h2>
 
-        <div class="products" id="productGrid"></div>
+<p>Discovering products through INAYA STORE is simple.</p>
 
+</div>
 
-        <div class="no-results" id="noResults">
+<div class="steps">
 
-            <h3>No products found</h3>
+<div class="step">
+<div class="icon">🔎</div>
+<h3>1. Discover</h3>
+<p>Browse our product recommendations and find something useful.</p>
+</div>
 
-            <p>
-                Try another product name or category.
-            </p>
+<div class="step">
+<div class="icon">🛍️</div>
+<h3>2. Choose</h3>
+<p>Review the product information and click Buy Now when ready.</p>
+</div>
 
-        </div>
+<div class="step">
+<div class="icon">🌐</div>
+<h3>3. Shop</h3>
+<p>You will visit the partner merchant website to complete your purchase.</p>
+</div>
 
-    </section>
+</div>
+</div>
+</section>
 
+<section class="container" id="about">
 
-    <!-- ================= HOW IT WORKS ================= -->
+<div class="section-title">
+<div class="section-label">About Us</div>
+<h2>About INAYA STORE</h2>
+</div>
 
-    <section class="how" id="how">
+<div class="about-box">
 
-        <div class="container">
+<p>
+INAYA STORE is an online product discovery and
+affiliate shopping website.
+</p>
 
-            <div class="section-title">
+<p>
+Our goal is to help visitors discover useful products
+and make more informed shopping decisions.
+</p>
 
-                <h2>How It Works</h2>
+<p>
+INAYA STORE does not directly sell, pack or deliver
+the products displayed on this website. Purchases are
+completed on third-party partner websites.
+</p>
 
-                <p>
-                    Shopping through INAYA STORE is simple.
-                </p>
+</div>
+</section>
 
-            </div>
+<section class="container" id="contact">
 
+<div class="section-title">
 
-            <div class="steps">
+<div class="section-label">Get In Touch</div>
 
-                <div class="step">
+<h2>Contact Us</h2>
 
-                    <div class="icon">🔎</div>
+<p>Have a question? Send us a message.</p>
 
-                    <h3>1. Discover</h3>
+</div>
 
-                    <p>
-                        Browse our product recommendations and find something useful.
-                    </p>
+<div class="contact-box">
 
-                </div>
+<form onsubmit="sendMessage(event)">
 
+<label>Name</label>
+<input id="contactName" type="text" placeholder="Your Name" required>
 
-                <div class="step">
+<label>Email</label>
+<input id="contactEmail" type="email" placeholder="Your Email" required>
 
-                    <div class="icon">🛍️</div>
+<label>Message</label>
+<textarea id="contactMessage"
+placeholder="Write your message..." required></textarea>
 
-                    <h3>2. Click Buy Now</h3>
+<button class="contact-btn" type="submit">
+Send Message
+</button>
 
-                    <p>
-                        Choose a product and click the Buy Now button.
-                    </p>
+</form>
 
-                </div>
+</div>
+</section>
 
+<section class="info-section" id="privacy">
 
-                <div class="step">
+<div class="container">
 
-                    <div class="icon">🌐</div>
+<div class="section-title">
+<div class="section-label">Legal</div>
+<h2>Privacy Policy</h2>
+</div>
 
-                    <h3>3. Complete Purchase</h3>
+<div class="info-box">
 
-                    <p>
-                        You will visit the partner website to complete your purchase.
-                    </p>
+<h3>Information We Collect</h3>
+<p>
+INAYA STORE may receive information that you voluntarily provide when contacting us.
+</p>
 
-                </div>
+<h3>Cookies & Browser Storage</h3>
+<p>
+This website may use browser storage or similar technologies to remember preferences such as wishlist items.
+</p>
 
-            </div>
+<h3>Third-Party Websites</h3>
+<p>
+When you click an affiliate link, you may be redirected to a third-party website.
+That website has its own privacy policy and terms.
+</p>
 
-        </div>
+<h3>Data Security</h3>
+<p>
+We take reasonable steps to protect information submitted through this website.
+However, no online system can be guaranteed to be completely secure.
+</p>
 
-    </section>
+</div>
+</div>
+</section>
 
+<section class="container" id="terms">
 
-    <!-- ================= ABOUT ================= -->
+<div class="section-title">
+<div class="section-label">Legal</div>
+<h2>Terms & Conditions</h2>
+</div>
 
-    <section class="container" id="about">
+<div class="info-box">
 
-        <div class="section-title">
+<h3>Website Use</h3>
+<p>
+You may use INAYA STORE for personal and informational shopping purposes.
+</p>
 
-            <h2>About INAYA STORE</h2>
+<h3>Product Information</h3>
+<p>
+Prices, availability, specifications and other product details may change on the third-party merchant website.
+</p>
 
-        </div>
+<h3>Purchases</h3>
+<p>
+INAYA STORE does not process payments, ship products or handle returns for purchases made through partner websites.
+</p>
 
-        <div class="about-box">
+<h3>External Links</h3>
+<p>
+We may link to external websites. We are not responsible for the content, policies or services of third-party websites.
+</p>
 
-            <p>
-                INAYA STORE is an online product discovery and
-                affiliate shopping website.
-            </p>
+</div>
+</section>
 
-            <p>
-                Our goal is to help visitors discover useful products
-                and make better shopping decisions.
-            </p>
+<section class="info-section" id="disclaimer">
 
-            <p>
-                INAYA STORE does not directly sell, pack or deliver
-                the products displayed on this website. Purchases are
-                completed on third-party partner websites.
-            </p>
+<div class="container">
 
-        </div>
+<div class="section-title">
+<div class="section-label">Transparency</div>
+<h2>Affiliate Disclaimer</h2>
+</div>
 
-    </section>
+<div class="info-box">
 
+<p>
+INAYA STORE participates in affiliate marketing.
+Some links on this website may be affiliate links.
+</p>
 
-    <!-- ================= CONTACT ================= -->
+<p>
+If you click an affiliate link and make an eligible purchase,
+INAYA STORE may receive a commission.
+</p>
 
-    <section class="container" id="contact">
+<p>
+This commission does not necessarily increase the price you pay.
+</p>
 
-        <div class="section-title">
+<p>
+We aim to provide useful and honest product information,
+but visitors should verify current price, availability,
+features and terms on the merchant's website before buying.
+</p>
 
-            <h2>Contact Us</h2>
+</div>
+</div>
+</section>
 
-            <p>
-                Have a question? Send us a message.
-            </p>
+<footer>
 
-        </div>
+<h2>🛍️ INAYA STORE</h2>
 
+<p>Smart Shopping • Useful Products • Better Choices</p>
 
-        <div class="contact-box">
+<div class="footer-links">
 
-            <form onsubmit="sendMessage(event)">
+<a href="#home">Home</a>
+<a href="#products">Products</a>
+<a href="#how">How It Works</a>
+<a href="#about">About</a>
+<a href="#contact">Contact</a>
+<a href="#privacy">Privacy</a>
+<a href="#terms">Terms</a>
+<a href="#disclaimer">Disclaimer</a>
 
-                <label>
-                    Name
-                </label>
+</div>
 
-                <input type="text" placeholder="Your Name" required>
+<p>© 2026 INAYA STORE. All Rights Reserved.</p>
 
-                <label>
-                    Email
-                </label>
+</footer>
 
-                <input type="email" placeholder="Your Email" required>
+<div class="modal" id="modal">
 
-                <label>
-                    Message
-                </label>
+<div class="modal-box">
 
-                <textarea placeholder="Write your message..." required></textarea>
+<img id="modalImage" class="modal-product-image" src="" alt="Product">
 
-                <button class="contact-btn">
-                    Send Message
-                </button>
+<div id="modalCategory" class="modal-category"></div>
 
-            </form>
+<h2 id="modalTitle">Product</h2>
 
-        </div>
+<div id="modalRating" class="modal-rating"></div>
 
-    </section>
+<div id="modalPrice" class="modal-price"></div>
 
+<p id="modalText" class="modal-description"></p>
 
-    <!-- ================= PRIVACY ================= -->
+<div class="modal-actions">
 
-    <section class="info-section" id="privacy">
+<button class="modal-buy" id="modalBuyButton">
+Buy Now ↗
+</button>
 
-        <div class="container">
+<button class="modal-close" onclick="closeModal()">
+Close
+</button>
 
-            <div class="section-title">
+</div>
+</div>
+</div>
 
-                <h2>Privacy Policy</h2>
+<div class="toast" id="toast"></div>
 
-            </div>
+<script>
 
-            <div class="info-box">
+/* =====================================================
+   50 PRODUCT DATABASE
+   IMPORTANT:
+   Replace affiliateLink with YOUR REAL affiliate link.
+===================================================== */
 
-                <h3>Information We Collect</h3>
+const products = [
 
-                <p>
-                    INAYA STORE may receive information that you
-                    voluntarily provide when contacting us.
-                </p>
+/* ================= ELECTRONICS ================= */
 
-                <h3>Cookies</h3>
-
-                <p>
-                    This website may use browser storage or similar
-                    technologies to remember preferences such as wishlist items.
-                </p>
-
-                <h3>Third-Party Websites</h3>
-
-                <p>
-                    When you click an affiliate link, you may be redirected
-                    to a third-party website. That website has its own privacy
-                    policy and terms.
-                </p>
-
-                <h3>Data Security</h3>
-
-                <p>
-                    We take reasonable steps to protect information submitted
-                    through this website. However, no online system can be
-                    guaranteed to be completely secure.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= TERMS ================= -->
-
-    <section class="container" id="terms">
-
-        <div class="section-title">
-
-            <h2>Terms & Conditions</h2>
-
-        </div>
-
-        <div class="info-box">
-
-            <h3>Website Use</h3>
-
-            <p>
-                You may use INAYA STORE for personal and informational
-                shopping purposes.
-            </p>
-
-            <h3>Product Information</h3>
-
-            <p>
-                Prices, availability, specifications and other product
-                details may change on the third-party merchant website.
-            </p>
-
-            <h3>Purchases</h3>
-
-            <p>
-                INAYA STORE does not process payments, ship products or
-                handle returns for purchases made through partner websites.
-            </p>
-
-            <h3>External Links</h3>
-
-            <p>
-                We may link to external websites. We are not responsible
-                for the content, policies or services of third-party websites.
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= DISCLAIMER ================= -->
-
-    <section class="info-section" id="disclaimer">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <h2>Affiliate Disclaimer</h2>
-
-            </div>
-
-            <div class="info-box">
-
-                <p>
-                    INAYA STORE participates in affiliate marketing.
-                    Some links on this website may be affiliate links.
-                </p>
-
-                <p>
-                    If you click an affiliate link and make an eligible
-                    purchase, INAYA STORE may receive a commission.
-                </p>
-
-                <p>
-                    This commission does not necessarily increase the price
-                    you pay.
-                </p>
-
-                <p>
-                    We aim to provide useful and honest product information,
-                    but visitors should verify current price, availability,
-                    features and terms on the merchant's website before buying.
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <h2>🛍️ INAYA STORE</h2>
-
-        <p>
-            Smart Shopping • Useful Products • Better Choices
-        </p>
-
-
-        <div class="footer-links">
-
-            <a href="#home">Home</a>
-
-            <a href="#products">Products</a>
-
-            <a href="#about">About</a>
-
-            <a href="#contact">Contact</a>
-
-            <a href="#privacy">Privacy</a>
-
-            <a href="#terms">Terms</a>
-
-            <a href="#disclaimer">Disclaimer</a>
-
-        </div>
-
-
-        <p>
-            © 2026 INAYA STORE. All Rights Reserved.
-        </p>
-
-    </footer>
-
-
-    <!-- ================= MODAL ================= -->
-
-    <div class="modal" id="modal">
-
-        <div class="modal-box">
-
-            <h2 id="modalTitle">
-                Affiliate Link Missing
-            </h2>
-
-            <p id="modalText">
-                The affiliate link for this product has not been added yet.
-            </p>
-
-            <button class="close" onclick="closeModal()">
-                Close
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= TOAST ================= -->
-
-    <div class="toast" id="toast"></div>
-
-
-    <script>
-
-        /* =====================================================
-           PRODUCT DATABASE
-        
-           IMPORTANT:
-           Put your REAL affiliate link inside affiliateLink.
-        ===================================================== */
-
-        const products = [
-            {
-  id: 1,
-  name: "Fire-Boltt Ninja Call Pro Max Smart Watch",
-  category: "Electronics",
-  price: 1199,
-  oldPrice: 18999,
-  rating: 3.6,
-  reviews: 627,
-  discount: 94,
-  image: "https://m.media-amazon.com/images/I/61C+LPKx+4L._SY450_.jpg",
-  affiliateLink: "https://link.amazon/B02nNWa0x"
-},
 {
-  id: 2,
-  name: "Noise ALT Buds Truly Wireless Earbuds",
-  category: "Electronics",
-  price: 2299,
-  oldPrice: 2299,
-  rating: 3.8,
-  reviews: 153,
-  discount: 0,
-  image: "https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Frvo9AVRL._SL1500_.jpg",
-  affiliateLink: "https://link.amazon/A099cBkBM"
+id:1,
+name:"Fire-Boltt Ninja Call Pro Max Smart Watch",
+category:"Electronics",
+price:1199,
+oldPrice:18999,
+rating:3.6,
+reviews:627,
+discount:94,
+image:"https://m.media-amazon.com/images/I/61C+LPKx+4L._SY450_.jpg",
+affiliateLink:"https://link.amazon/B02nNWa0x"
 },
-    
 
-            {
-                id: 3,
-                name: "Classic T-Shirt",
-                category: "Fashion",
-                price: 599,
-                oldPrice: 799,
-                rating: 4.3,
-                reviews: 74,
-                discount: 25,
-                image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+{
+id:2,
+name:"Noise ALT Buds Truly Wireless Earbuds",
+category:"Electronics",
+price:2299,
+oldPrice:2999,
+rating:3.8,
+reviews:153,
+discount:23,
+image:"https://m.media-amazon.com/images/W/BW_MEDIAX_AVIF_MEASUREMENT_1306696-T4/images/I/71Frvo9AVRL._SL1500_.jpg",
+affiliateLink:"https://link.amazon/A099cBkBM"
+},
 
-                affiliateLink: ""
-            },
+{
+id:3,
+name:"Wireless Bluetooth Speaker",
+category:"Electronics",
+price:899,
+oldPrice:1499,
+rating:4.2,
+reviews:284,
+discount:40,
+image:"https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-            {
-                id: 4,
-                name: "Sports Shoes",
-                category: "Fashion",
-                price: 1999,
-                oldPrice: 2499,
-                rating: 4.7,
-                reviews: 156,
-                discount: 20,
-                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+{
+id:4,
+name:"Smart LED TV",
+category:"Electronics",
+price:12999,
+oldPrice:17999,
+rating:4.4,
+reviews:391,
+discount:28,
+image:"https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-                affiliateLink: ""
-            },
+{
+id:5,
+name:"Wireless Keyboard",
+category:"Electronics",
+price:999,
+oldPrice:1499,
+rating:4.3,
+reviews:218,
+discount:33,
+image:"https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-            {
-                id: 5,
-                name: "Table Lamp",
-                category: "Home",
-                price: 799,
-                oldPrice: 999,
-                rating: 4.2,
-                reviews: 51,
-                discount: 20,
-                image: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
+{
+id:6,
+name:"Wireless Mouse",
+category:"Electronics",
+price:499,
+oldPrice:799,
+rating:4.5,
+reviews:504,
+discount:38,
+image:"https://images.unsplash.com/photo-1527814050087-3793815479db?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-                affiliateLink: ""
-            },
+{
+id:7,
+name:"USB Fast Charger",
+category:"Electronics",
+price:699,
+oldPrice:999,
+rating:4.4,
+reviews:332,
+discount:30,
+image:"https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-            {
-                id: 6,
-                name: "Water Bottle",
-                category: "Home",
-                price: 399,
-                oldPrice: 499,
-                rating: 4.1,
-                reviews: 43,
-                discount: 20,
-                image: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80",
+{
+id:8,
+name:"Power Bank 20000mAh",
+category:"Electronics",
+price:1299,
+oldPrice:1999,
+rating:4.2,
+reviews:443,
+discount:35,
+image:"https://images.unsplash.com/photo-1609592424850-8cbd8c9d2baf?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-                affiliateLink: ""
-            },
+{
+id:9,
+name:"Smartphone Stand",
+category:"Electronics",
+price:349,
+oldPrice:599,
+rating:4.1,
+reviews:198,
+discount:42,
+image:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-            {
-                id: 7,
-                name: "Face Wash",
-                category: "Beauty",
-                price: 299,
-                oldPrice: 399,
-                rating: 4.6,
-                reviews: 112,
-                discount: 25,
-                image: "https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80",
+{
+id:10,
+name:"USB-C Cable",
+category:"Electronics",
+price:299,
+oldPrice:499,
+rating:4.4,
+reviews:720,
+discount:40,
+image:"https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-                affiliateLink: ""
-            },
+/* ================= FASHION ================= */
 
-            {
-                id: 8,
-                name: "Backpack",
-                category: "Accessories",
-                price: 899,
-                oldPrice: 1199,
-                rating: 4.5,
-                reviews: 87,
-                discount: 25,
-                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+{
+id:11,
+name:"Classic T-Shirt",
+category:"Fashion",
+price:599,
+oldPrice:799,
+rating:4.3,
+reviews:74,
+discount:25,
+image:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-                affiliateLink: ""
-            }
+{
+id:12,
+name:"Sports Shoes",
+category:"Fashion",
+price:1999,
+oldPrice:2499,
+rating:4.7,
+reviews:156,
+discount:20,
+image:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
 
-        ];
+{
+id:13,
+name:"Casual Denim Jeans",
+category:"Fashion",
+price:1199,
+oldPrice:1699,
+rating:4.4,
+reviews:184,
+discount:29,
+image:"https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:14,
+name:"Men's Casual Shirt",
+category:"Fashion",
+price:899,
+oldPrice:1299,
+rating:4.2,
+reviews:112,
+discount:31,
+image:"https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:15,
+name:"Hoodie Sweatshirt",
+category:"Fashion",
+price:1299,
+oldPrice:1799,
+rating:4.5,
+reviews:230,
+discount:28,
+image:"https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:16,
+name:"Women's Casual Dress",
+category:"Fashion",
+price:1099,
+oldPrice:1599,
+rating:4.3,
+reviews:97,
+discount:31,
+image:"https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:17,
+name:"Cotton Kurta",
+category:"Fashion",
+price:799,
+oldPrice:1199,
+rating:4.5,
+reviews:143,
+discount:33,
+image:"https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:18,
+name:"Running Shorts",
+category:"Fashion",
+price:549,
+oldPrice:799,
+rating:4.2,
+reviews:86,
+discount:31,
+image:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:19,
+name:"Cotton Socks Pack",
+category:"Fashion",
+price:299,
+oldPrice:499,
+rating:4.4,
+reviews:321,
+discount:40,
+image:"https://images.unsplash.com/photo-1582966772680-860e372bb558?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:20,
+name:"Classic Polo Shirt",
+category:"Fashion",
+price:699,
+oldPrice:999,
+rating:4.3,
+reviews:134,
+discount:30,
+image:"https://images.unsplash.com/photo-1625910513413-5fc45a7f0d8a?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+/* ================= HOME ================= */
+
+{
+id:21,
+name:"Table Lamp",
+category:"Home",
+price:799,
+oldPrice:999,
+rating:4.2,
+reviews:51,
+discount:20,
+image:"https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:22,
+name:"Water Bottle",
+category:"Home",
+price:399,
+oldPrice:499,
+rating:4.1,
+reviews:43,
+discount:20,
+image:"https://images.unsplash.com/photo-1602143407151-7111542de6e8?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:23,
+name:"Non-Stick Frying Pan",
+category:"Home",
+price:899,
+oldPrice:1299,
+rating:4.5,
+reviews:218,
+discount:31,
+image:"https://images.unsplash.com/photo-1584990347449-ae9c4e8e8e4a?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:24,
+name:"Kitchen Storage Containers",
+category:"Home",
+price:699,
+oldPrice:999,
+rating:4.4,
+reviews:167,
+discount:30,
+image:"https://images.unsplash.com/photo-1583947215259-38e31be8751f?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:25,
+name:"Bedside Table Organizer",
+category:"Home",
+price:449,
+oldPrice:699,
+rating:4.2,
+reviews:91,
+discount:36,
+image:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:26,
+name:"Decorative Wall Clock",
+category:"Home",
+price:599,
+oldPrice:899,
+rating:4.3,
+reviews:129,
+discount:33,
+image:"https://images.unsplash.com/photo-1563861826100-9cb868fdbe1c?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:27,
+name:"LED String Lights",
+category:"Home",
+price:299,
+oldPrice:499,
+rating:4.5,
+reviews:387,
+discount:40,
+image:"https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:28,
+name:"Cotton Cushion Set",
+category:"Home",
+price:749,
+oldPrice:999,
+rating:4.4,
+reviews:83,
+discount:25,
+image:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:29,
+name:"Kitchen Knife Set",
+category:"Home",
+price:799,
+oldPrice:1199,
+rating:4.3,
+reviews:201,
+discount:33,
+image:"https://images.unsplash.com/photo-1593618998160-e34014e67546?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:30,
+name:"Laundry Storage Basket",
+category:"Home",
+price:649,
+oldPrice:899,
+rating:4.1,
+reviews:75,
+discount:28,
+image:"https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+/* ================= BEAUTY ================= */
+
+{
+id:31,
+name:"Face Wash",
+category:"Beauty",
+price:299,
+oldPrice:399,
+rating:4.6,
+reviews:112,
+discount:25,
+image:"https://images.unsplash.com/photo-1556229010-6c3f2c9ca5f8?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:32,
+name:"Moisturizing Face Cream",
+category:"Beauty",
+price:399,
+oldPrice:599,
+rating:4.4,
+reviews:192,
+discount:33,
+image:"https://images.unsplash.com/photo-1611930022073-b7a4ba5fcccd?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:33,
+name:"Sunscreen SPF 50",
+category:"Beauty",
+price:499,
+oldPrice:699,
+rating:4.5,
+reviews:314,
+discount:29,
+image:"https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:34,
+name:"Lip Balm",
+category:"Beauty",
+price:199,
+oldPrice:299,
+rating:4.3,
+reviews:156,
+discount:33,
+image:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:35,
+name:"Hair Shampoo",
+category:"Beauty",
+price:349,
+oldPrice:499,
+rating:4.2,
+reviews:241,
+discount:30,
+image:"https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:36,
+name:"Hair Conditioner",
+category:"Beauty",
+price:399,
+oldPrice:599,
+rating:4.4,
+reviews:178,
+discount:33,
+image:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:37,
+name:"Makeup Brush Set",
+category:"Beauty",
+price:599,
+oldPrice:999,
+rating:4.5,
+reviews:203,
+discount:40,
+image:"https://images.unsplash.com/photo-1596462502278-27bfdc403348?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:38,
+name:"Body Lotion",
+category:"Beauty",
+price:349,
+oldPrice:499,
+rating:4.3,
+reviews:145,
+discount:30,
+image:"https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:39,
+name:"Perfume",
+category:"Beauty",
+price:899,
+oldPrice:1299,
+rating:4.2,
+reviews:224,
+discount:31,
+image:"https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:40,
+name:"Face Serum",
+category:"Beauty",
+price:549,
+oldPrice:799,
+rating:4.5,
+reviews:189,
+discount:31,
+image:"https://images.unsplash.com/photo-1620916566398-39f1143ab7be?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+/* ================= ACCESSORIES ================= */
+
+{
+id:41,
+name:"Backpack",
+category:"Accessories",
+price:899,
+oldPrice:1199,
+rating:4.5,
+reviews:87,
+discount:25,
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:42,
+name:"Leather Wallet",
+category:"Accessories",
+price:499,
+oldPrice:799,
+rating:4.4,
+reviews:192,
+discount:38,
+image:"https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:43,
+name:"Sunglasses",
+category:"Accessories",
+price:699,
+oldPrice:999,
+rating:4.3,
+reviews:148,
+discount:30,
+image:"https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:44,
+name:"Analog Wrist Watch",
+category:"Accessories",
+price:1299,
+oldPrice:1999,
+rating:4.4,
+reviews:174,
+discount:35,
+image:"https://images.unsplash.com/photo-1524805444758-089113d48a6d?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:45,
+name:"Travel Organizer Pouch",
+category:"Accessories",
+price:399,
+oldPrice:599,
+rating:4.2,
+reviews:69,
+discount:33,
+image:"https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:46,
+name:"Minimalist Belt",
+category:"Accessories",
+price:449,
+oldPrice:699,
+rating:4.3,
+reviews:102,
+discount:36,
+image:"https://images.unsplash.com/photo-1624222247344-550fb60583dc?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:47,
+name:"Laptop Sleeve",
+category:"Accessories",
+price:699,
+oldPrice:999,
+rating:4.5,
+reviews:219,
+discount:30,
+image:"https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:48,
+name:"Keychain Set",
+category:"Accessories",
+price:199,
+oldPrice:299,
+rating:4.1,
+reviews:84,
+discount:33,
+image:"https://images.unsplash.com/photo-1590301157890-4810ed352733?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:49,
+name:"Travel Neck Pillow",
+category:"Accessories",
+price:499,
+oldPrice:799,
+rating:4.4,
+reviews:136,
+discount:38,
+image:"https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+},
+
+{
+id:50,
+name:"Mobile Phone Holder",
+category:"Accessories",
+price:299,
+oldPrice:499,
+rating:4.3,
+reviews:264,
+discount:40,
+image:"https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=700&q=80",
+affiliateLink:""
+}
+
+];
 
 
-        /* CURRENT CATEGORY */
+/* ================= STATE ================= */
 
-        let currentCategory = "All";
+let currentCategory="All";
 
-
-        /* WISHLIST */
-
-        let wishlist =
-            JSON.parse(localStorage.getItem("inayaWishlist") || "[]");
+let wishlist=
+JSON.parse(localStorage.getItem("inayaWishlist")||"[]");
 
 
-        /* =====================================================
-           RENDER PRODUCTS
-        ===================================================== */
+/* ================= RENDER ================= */
 
-        function renderProducts() {
+function renderProducts(){
 
-            const grid =
-                document.getElementById("productGrid");
+const grid=document.getElementById("productGrid");
 
-            const search =
-                document.getElementById("search")
-                    .value
-                    .toLowerCase()
-                    .trim();
+const search=document.getElementById("search")
+.value.toLowerCase()
+.trim();
 
-            const sort =
-                document.getElementById("sort")
-                    .value;
+const sort=document.getElementById("sort").value;
 
+let result=products.filter(product=>{
 
-            let result = products.filter(product => {
+const categoryMatch=
+currentCategory==="All"||
+product.category===currentCategory;
 
-                const categoryMatch =
-                    currentCategory === "All" ||
-                    product.category === currentCategory;
+const searchMatch=
+product.name.toLowerCase().includes(search);
 
-                const searchMatch =
-                    product.name.toLowerCase().includes(search);
+return categoryMatch&&searchMatch;
 
-                return categoryMatch && searchMatch;
-
-            });
+});
 
 
-            /* SORT */
+if(sort==="low"){
+result.sort((a,b)=>a.price-b.price);
+}
 
-            if (sort === "low") {
-                result.sort((a, b) => a.price - b.price);
-            }
+if(sort==="high"){
+result.sort((a,b)=>b.price-a.price);
+}
 
-            if (sort === "high") {
-                result.sort((a, b) => b.price - a.price);
-            }
+if(sort==="rating"){
+result.sort((a,b)=>b.rating-a.rating);
+}
 
-            if (sort === "rating") {
-                result.sort((a, b) => b.rating - a.rating);
-            }
-
-            if (sort === "discount") {
-                result.sort((a, b) => b.discount - a.discount);
-            }
+if(sort==="discount"){
+result.sort((a,b)=>b.discount-a.discount);
+}
 
 
-            /* NO RESULT */
-
-            if (result.length === 0) {
-
-                grid.innerHTML = "";
-
-                document.getElementById("noResults")
-                    .style.display = "block";
-
-                return;
-
-            }
-
-            document.getElementById("noResults")
-                .style.display = "none";
+document.getElementById("productCount").innerText=
+`Showing ${result.length} of ${products.length} products`;
 
 
-            /* PRODUCT CARDS */
+if(result.length===0){
 
-            grid.innerHTML = result.map(product => {
+grid.innerHTML="";
 
-                const liked =
-                    wishlist.includes(product.id);
+document.getElementById("noResults").style.display="block";
 
-                return `
+return;
+}
+
+document.getElementById("noResults").style.display="none";
+
+
+grid.innerHTML=result.map(product=>{
+
+const liked=wishlist.includes(product.id);
+
+const discountBadge=
+product.discount>0
+?`<div class="discount">-${product.discount}% OFF</div>`
+:"";
+
+return`
 
 <article class="card">
 
@@ -1367,22 +1927,20 @@
 src="${product.image}"
 alt="${product.name}"
 loading="lazy"
->
+onerror="this.src='https://via.placeholder.com/700x500?text=INAYA+STORE'">
 
-<div class="discount">
--${product.discount}%
-</div>
+${discountBadge}
 
 <button
 class="wish"
 onclick="toggleWishlist(${product.id},this)"
-aria-label="Add ${product.name} to wishlist"
->
-${liked ? "♥" : "♡"}
+aria-label="Add ${product.name} to wishlist">
+
+${liked?"♥":"♡"}
+
 </button>
 
 </div>
-
 
 <div class="card-body">
 
@@ -1390,17 +1948,12 @@ ${liked ? "♥" : "♡"}
 ${product.category}
 </div>
 
-<h3>
-${product.name}
-</h3>
+<h3>${product.name}</h3>
 
 <div class="rating">
 ⭐ ${product.rating}
-<span style="color:#94a3b8">
-(${product.reviews} reviews)
-</span>
+<span>(${product.reviews} reviews)</span>
 </div>
-
 
 <div class="price">
 
@@ -1408,19 +1961,29 @@ ${product.name}
 ₹${product.price.toLocaleString("en-IN")}
 </span>
 
-<span class="old">
-₹${product.oldPrice.toLocaleString("en-IN")}
-</span>
+${
+product.oldPrice>product.price
+?`<span class="old">₹${product.oldPrice.toLocaleString("en-IN")}</span>`
+:""
+}
 
 </div>
 
+<div class="card-actions">
+
+<button
+class="details"
+onclick="showDetails(${product.id})">
+Details
+</button>
 
 <button
 class="buy"
-onclick="buyProduct(${product.id})"
->
+onclick="buyProduct(${product.id})">
 Buy Now ↗
 </button>
+
+</div>
 
 </div>
 
@@ -1428,180 +1991,212 @@ Buy Now ↗
 
 `;
 
-            }).join("");
+}).join("");
 
-        }
+}
 
 
-        /* =====================================================
-           CATEGORY
-        ===================================================== */
+/* ================= CATEGORY ================= */
 
-        function setCategory(category, button) {
+function setCategory(category,button){
 
-            currentCategory = category;
+currentCategory=category;
 
-            document.querySelectorAll(".category-btn")
-                .forEach(btn => {
-                    btn.classList.remove("active");
-                });
+document
+.querySelectorAll(".category-btn")
+.forEach(btn=>btn.classList.remove("active"));
 
-            button.classList.add("active");
+button.classList.add("active");
 
-            renderProducts();
+renderProducts();
 
-        }
+}
 
 
-        /* =====================================================
-           AFFILIATE BUY BUTTON
-        ===================================================== */
+/* ================= DETAILS ================= */
 
-        function buyProduct(id) {
+function showDetails(id){
 
-            const product =
-                products.find(item => item.id === id);
+const product=products.find(item=>item.id===id);
 
+if(!product)return;
 
-            if (!product) {
-                return;
-            }
+document.getElementById("modalImage").src=product.image;
 
+document.getElementById("modalImage").alt=product.name;
 
-            /*
-               If affiliate link is empty,
-               show message.
-            */
+document.getElementById("modalCategory").innerText=product.category;
 
-            if (
-                !product.affiliateLink ||
-                product.affiliateLink.trim() === ""
-            ) {
+document.getElementById("modalTitle").innerText=product.name;
 
-                document.getElementById("modalTitle")
-                    .innerText =
-                    "Affiliate Link Not Added";
+document.getElementById("modalRating").innerText=
+`⭐ ${product.rating} (${product.reviews} reviews)`;
 
-                document.getElementById("modalText")
-                    .innerText =
-                    "The affiliate link for " +
-                    product.name +
-                    " has not been added yet. Add your real affiliate link in the product code.";
+document.getElementById("modalPrice").innerText=
+`₹${product.price.toLocaleString("en-IN")}`;
 
-                document.getElementById("modal")
-                    .style.display = "flex";
+document.getElementById("modalText").innerText=
+`Explore this ${product.category.toLowerCase()} product through INAYA STORE. Product price, availability, specifications and other details may change on the merchant website. Please verify the latest information before purchasing.`;
 
-                return;
+document.getElementById("modalBuyButton").onclick=
+function(){
+buyProduct(product.id);
+};
 
-            }
+document.getElementById("modal").style.display="flex";
 
+}
 
-            /*
-               Open merchant website.
-            */
 
-            window.open(
-                product.affiliateLink,
-                "_blank",
-                "noopener,noreferrer"
-            );
+/* ================= BUY ================= */
 
-        }
+function buyProduct(id){
 
+const product=products.find(item=>item.id===id);
 
-        /* =====================================================
-           WISHLIST
-        ===================================================== */
+if(!product)return;
 
-        function toggleWishlist(id, button) {
 
-            if (wishlist.includes(id)) {
+if(!product.affiliateLink||
+product.affiliateLink.trim()===""){
 
-                wishlist =
-                    wishlist.filter(item => item !== id);
+document.getElementById("modalImage").style.display="none";
 
-                button.innerText = "♡";
+document.getElementById("modalTitle").innerText=
+"Affiliate Link Not Added";
 
-                showToast("Removed from wishlist");
+document.getElementById("modalCategory").innerText=
+product.category;
 
-            } else {
+document.getElementById("modalRating").innerText="";
 
-                wishlist.push(id);
+document.getElementById("modalPrice").innerText="";
 
-                button.innerText = "♥";
+document.getElementById("modalText").innerText=
+`The affiliate link for "${product.name}" has not been added yet. Add your real affiliate link in the product database.`;
 
-                showToast("Added to wishlist ❤️");
+document.getElementById("modalBuyButton").style.display="none";
 
-            }
+document.getElementById("modal").style.display="flex";
 
+return;
+}
 
-            localStorage.setItem(
-                "inayaWishlist",
-                JSON.stringify(wishlist)
-            );
 
-        }
+window.open(
+product.affiliateLink,
+"_blank",
+"noopener,noreferrer"
+);
 
+}
 
-        /* =====================================================
-           MODAL CLOSE
-        ===================================================== */
 
-        function closeModal() {
+/* ================= WISHLIST ================= */
 
-            document.getElementById("modal")
-                .style.display = "none";
+function toggleWishlist(id,button){
 
-        }
+if(wishlist.includes(id)){
 
+wishlist=wishlist.filter(item=>item!==id);
 
-        /* =====================================================
-           CONTACT FORM
-        ===================================================== */
+button.innerText="♡";
 
-        function sendMessage(event) {
+showToast("Removed from wishlist");
 
-            event.preventDefault();
+}else{
 
-            showToast(
-                "Thank you! Your message form is ready."
-            );
+wishlist.push(id);
 
-            event.target.reset();
+button.innerText="♥";
 
-        }
+showToast("Added to wishlist ❤️");
 
+}
 
-        /* =====================================================
-           TOAST
-        ===================================================== */
+localStorage.setItem(
+"inayaWishlist",
+JSON.stringify(wishlist)
+);
 
-        function showToast(message) {
+}
 
-            const toast =
-                document.getElementById("toast");
 
-            toast.innerText = message;
+/* ================= MODAL ================= */
 
-            toast.style.display = "block";
+function closeModal(){
 
-            setTimeout(() => {
+document.getElementById("modal").style.display="none";
 
-                toast.style.display = "none";
+document.getElementById("modalImage").style.display="block";
 
-            }, 2200);
+document.getElementById("modalBuyButton").style.display="block";
 
-        }
+}
 
 
-        /* =====================================================
-           START WEBSITE
-        ===================================================== */
+document.getElementById("modal")
+.addEventListener("click",function(event){
 
-        renderProducts();
+if(event.target===this){
+closeModal();
+}
 
-    </script>
+});
+
+
+document.addEventListener("keydown",function(event){
+
+if(event.key==="Escape"){
+closeModal();
+}
+
+});
+
+
+/* ================= CONTACT ================= */
+
+function sendMessage(event){
+
+event.preventDefault();
+
+showToast(
+"Thank you! Your message has been received."
+);
+
+event.target.reset();
+
+}
+
+
+/* ================= TOAST ================= */
+
+function showToast(message){
+
+const toast=document.getElementById("toast");
+
+toast.innerText=message;
+
+toast.style.display="block";
+
+clearTimeout(window.toastTimer);
+
+window.toastTimer=setTimeout(()=>{
+
+toast.style.display="none";
+
+},2500);
+
+}
+
+
+/* ================= START ================= */
+
+renderProducts();
+
+</script>
 
 </body>
-
 </html>
+
+
